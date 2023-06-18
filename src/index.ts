@@ -1,5 +1,10 @@
 import { validatePayment } from "./helpers";
 
+enum PaymentStatusTypes {
+  Failed = "failed",
+  Success = "success"
+}
+
 class PayablSDK {
   apiKey: string | null = null;
   paymentLinkId: string | null = null;
@@ -33,6 +38,14 @@ class PayablSDK {
     });
 
     callback(isPaymentValid);
+  }
+
+  onPaymentStatusUpdated(callback: Function) {
+    window.addEventListener("message", event => {
+      const paymentStatus: PaymentStatusTypes = event.data.paymentStatus;
+
+      callback(paymentStatus);
+    });
   }
 }
 

@@ -21,7 +21,7 @@ export const validatePayment = async ({
 
   try {
     const response = await axios.get(
-      `https://api.payabl.cc/payment_links/${paymentLinkId}/validate_payment?address=${address}`,
+      `https://5kfme18pse.execute-api.us-east-1.amazonaws.com/${paymentLinkId}/validate_payment?address=${address}`,
       config
     );
 
